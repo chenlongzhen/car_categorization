@@ -14,12 +14,14 @@ import lmdb
 import numpy as np
 from caffe.proto import caffe_pb2
 
-caffe.set_mode_gpu() 
+#caffe.set_mode_gpu() 
+caffe.set_mode_cpu() 
 
 #Size of images
 IMAGE_WIDTH = 224
 IMAGE_HEIGHT = 224
 
+predict_path = "../data/tinyPic"
 
 '''
 Image processing helper function
@@ -81,7 +83,8 @@ print("{} labels read".format(num+1))
 Making predicitions
 '''
 ##Reading image paths
-test_img_paths = [img_path for img_path in glob.glob("../data/cars_train/*jpg")]
+test_img_paths = [img_path for img_path in glob.glob(predict_path + "/*jpg")]
+
 print("{} pics".format(len(test_img_paths)))
 
 test_ids = []
